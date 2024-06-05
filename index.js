@@ -79,34 +79,34 @@ function main() {
 
   // initialize cubes
 
-  const cubes = [
-    makeInstance(geometry, 0x44aa88, 0),
-    makeInstance(geometry, 0x8844aa, -2),
-    makeInstance(geometry, 0xaa8844, 2),
-  ];
+  // const cubes = [
+  //   makeInstance(geometry, 0x44aa88, 0),
+  //   makeInstance(geometry, 0x8844aa, -2),
+  //   makeInstance(geometry, 0xaa8844, 2),
+  // ];
 
   //sphere
-  const loader = new THREE.TextureLoader();
-  const addImage = loader.load("resources/images/sky.jpg");
-  addImage.colorSpace = THREE.SRGBColorSpace;
+  // const loader = new THREE.TextureLoader();
+  // const addImage = loader.load("resources/images/sky.jpg");
+  // addImage.colorSpace = THREE.SRGBColorSpace;
 
-  const sphereGeometry = new THREE.SphereGeometry(5, 10, 10);
-  const sphereColor = 0xff00ff;
-  const sphereMaterial = new THREE.MeshPhongMaterial({ map: addImage });
-  const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-  sphere.position.set(-15, 3, -20);
-  scene.add(sphere);
+  // const sphereGeometry = new THREE.SphereGeometry(5, 10, 10);
+  // const sphereColor = 0xff00ff;
+  // const sphereMaterial = new THREE.MeshPhongMaterial({ map: addImage });
+  // const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+  // sphere.position.set(-15, 3, -20);
+  // scene.add(sphere);
 
   //cylinder
 
-  const cylinderColor = 0xffc0cb;
-  const cylinderGeometry = new THREE.CylinderGeometry(2, 2, 2, 32); // Increase segments for smoother surface
-  const cylinderMaterial = new THREE.MeshPhongMaterial({
-    color: cylinderColor,
-  });
-  const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
-  cylinder.position.set(0, 1, -5);
-  scene.add(cylinder);
+  // const cylinderColor = 0xffc0cb;
+  // const cylinderGeometry = new THREE.CylinderGeometry(2, 2, 2, 32); // Increase segments for smoother surface
+  // const cylinderMaterial = new THREE.MeshPhongMaterial({
+  //   color: cylinderColor,
+  // });
+  // const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+  // cylinder.position.set(0, 1, -5);
+  // scene.add(cylinder);
 
     // Add the floor
     const floorGeometry = new THREE.BoxGeometry(30, 0.1, 30); // Width, height, depth
@@ -176,7 +176,7 @@ addTree(new THREE.Vector3(8, 1, 13));
 
   // Load 3D model
 
-  console.log("hello");
+
 
   let cat;
 
@@ -201,8 +201,280 @@ addTree(new THREE.Vector3(8, 1, 13));
     cat = root;
   }
 
+  let farmhouse;
+
+  function loadFarmhouse() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/FarmHouse.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/FarmHouse.obj", function (root) {
+        initializeFarmhouse(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeFarmhouse(root) {
+    root.position.set(7, -0.4, -8); // Adjust the position as needed
+    root.scale.set(0.3, 0.3, 0.3);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0);     // Adjust the rotation as needed
+    scene.add(root);
+    farmhouse = root;
+  }
+  loadFarmhouse();
 
 
+  let shrub;
+
+  // Function to load the shrub model
+  function loadShrub() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+
+    mtlLoader.load("resources/models/shrub.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/shrub.obj", function (root) {
+        initializeShrub(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+
+  function initializeShrub(root) {
+    root.position.set(2, -0.4, -8); // Adjust the position as needed
+    root.scale.set(0.5, 0.5, 0.5);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0);     // Adjust the rotation as needed
+    scene.add(root);
+    shrub = root;
+  }
+  loadShrub();
+
+
+  let gym_1269;
+
+  function loadGym_1269() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/Gym_1269.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/Gym_1269.obj", function (root) {
+        initializeGym_1269(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeGym_1269(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(-6, -0.4, -8); // Adjusted position similar to the shrub
+    root.scale.set(0.07, 0.07, 0.07);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0);     // Adjust the rotation as needed
+    
+    scene.add(root);
+    gym_1269 = root;
+  }
+  // Call loadGym_1269 function to load the model
+  loadGym_1269();
+  
+  let diner;
+
+  function loadDiner() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/Diner.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/Diner.obj", function (root) {
+        initializeDiner(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeDiner(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(6, -0.4, 9); // Adjusted position similar to the shrub
+    root.scale.set(-0.5, 0.5, -0.5);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // Rotate left (counter-clockwise) by 90 degrees around the z-axis
+    
+    scene.add(root);
+    diner = root;
+  }
+  
+  // Call loadDiner function to load the model
+  loadDiner();
+  
+
+
+  function loadTelephonePole() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/telephonePole.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/telephonePole.obj", function (root) {
+        initializeTelephonePole(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeTelephonePole(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(11, -0.4, -3); // Adjusted position similar to the shrub
+    root.scale.set(-0.5, 0.5, -0.5);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // No rotation needed
+    
+    scene.add(root);
+    telephonePole = root;
+  }
+  
+  // Call loadTelephonePole function to load the model
+  loadTelephonePole();
+  
+  function loadTractor() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/Tractor.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/Tractor(1).obj", function (root) {
+        initializeTractor(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeTractor(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(8, -0.4, 0); // Adjusted position similar to the diner
+    root.scale.set(0.3, 0.3, 0.3);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // No rotation needed
+    
+    scene.add(root);
+    tractor = root; // Assuming you have a variable named "tractor" to store the reference to the loaded tractor model
+  }
+  
+  // Call loadTractor function to load the model
+  loadTractor();
+
+  function loadClub_1260() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/Club_1260.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/Club_1260.obj", function (root) {
+        initializeClub_1260(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeClub_1260(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(-6, -0.4, 7); // Adjusted position similar to the diner
+    root.scale.set(-0.05, 0.05, -0.05);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // No rotation needed
+    
+    scene.add(root);
+    club_1260 = root; // Assuming you have a variable named "club_1260" to store the reference to the loaded model
+  }
+  
+  // Call loadClub_1260 function to load the model
+  loadClub_1260();
+  
+  function loadBisonPlains() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/BisonPlains.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/BisonPlains.obj", function (root) {
+        initializeBisonPlains(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeBisonPlains(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(4, -0.4, -2); // Adjusted position similar to the diner
+    root.scale.set(0.2, 0.2, 0.2);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // No rotation needed
+    
+    scene.add(root);
+    bisonPlains = root; // Assuming you have a variable named "bisonPlains" to store the reference to the loaded model
+  }
+  
+  // Call loadBisonPlains function to load the model
+  loadBisonPlains();
+  
+  function loadBadger() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/Badger.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/Badger.obj", function (root) {
+        initializeBadger(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeBadger(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(2, -0.4, -2); // Adjusted position similar to the BisonPlains
+    root.scale.set(0.2, 0.2, 0.2);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // No rotation needed
+    
+    scene.add(root);
+    badger = root; // Assuming you have a variable named "badger" to store the reference to the loaded model
+  }
+  
+  // Call loadBadger function to load the model
+  loadBadger();
+   
+  function loadTurtle() {
+    const mtlLoader = new MTLLoader();
+    const objLoader = new OBJLoader();
+  
+    mtlLoader.load("resources/models/turtle.mtl", function (mtl) {
+      mtl.preload();
+      objLoader.setMaterials(mtl);
+      objLoader.load("resources/models/turtle.obj", function (root) {
+        initializeTurtle(root);
+        // No need to call animate again if it's already running
+      });
+    });
+  }
+  
+  function initializeTurtle(root) {
+    // Adjust position, scale, rotation as needed
+    root.position.set(-2, -0.4, -2); // Adjusted position similar to the BisonPlains
+    root.scale.set(0.1, 0.1, 0.1);  // Adjust the scale as needed
+    root.rotation.set(0, 0, 0); // No rotation needed
+    
+    scene.add(root);
+    turtle = root; // Assuming you have a variable named "turtle" to store the reference to the loaded model
+  }
+  
+  // Call loadTurtle function to load the model
+  loadTurtle();
+  
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;

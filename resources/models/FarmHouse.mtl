@@ -1,0 +1,4 @@
+newmtl FarmHouse_Mat
+illum 4
+map_Kd FarmHouse_BaseColor.png
+Ni 1.00
